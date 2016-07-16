@@ -6,14 +6,17 @@
 
 Ext.application({
     name: 'Packt',
-    
-    init:function(){
-        splashScreen = Ext.getBody().mask('Loading application','splashscreen');
+
+    init: function () {
+        splashScreen = Ext.getBody().mask('Loading application', 'splashscreen');
+        Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
+            cls: 'x-splash-icon'
+        });
     },
 
-    launch:function(){
+    launch: function () {
         console.log('launch');
     }
-    
+
 
 });
