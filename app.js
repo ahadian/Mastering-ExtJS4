@@ -15,8 +15,18 @@ Ext.application({
     },
 
     launch: function () {
+        this.hideMaskAfterDelay();
         console.log('launch');
+    },
+
+    hideMaskAfterDelay: function () {
+        var delatedTask = new Ext.util.DelayedTask(function () {
+            Ext.getBody().unmask();
+        });
+
+        delatedTask.delay(2000);
     }
+
 
 
 });
