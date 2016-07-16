@@ -16,7 +16,6 @@ Ext.application({
 
     launch: function () {
         this._hideMaskAfterDelay();
-        console.log('launch');
     },
 
    _hideMaskAfterDelay: function () {
@@ -33,7 +32,7 @@ Ext.application({
     },
 
     _launchApplication:function(){
-        console.log('launch application');
+       Ext.create('Packt.view.Login');
     }
 
 });
