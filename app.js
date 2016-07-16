@@ -6,9 +6,10 @@
 
 Ext.application({
     name: 'Packt',
+    
+    launch:function(){
+        console.log('launch');
+    }
+    
 
-    extend: 'Packt.Application',
-    
-    autoCreateViewport: true
-    
 });
