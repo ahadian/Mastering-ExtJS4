@@ -8,24 +8,35 @@ Ext.application({
     name: 'Packt',
 
     init: function () {
-        splashScreen = Ext.getBody().mask('Loading application', 'splashscreen');
+        this.splashScreen = Ext.getBody().mask('Loading application', 'splashscreen');
         Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
             cls: 'x-splash-icon'
         });
     },
 
     launch: function () {
-        this.hideMaskAfterDelay();
+        this._hideMaskAfterDelay();
         console.log('launch');
     },
 
-    hideMaskAfterDelay: function () {
+   _hideMaskAfterDelay: function () {
         var delatedTask = new Ext.util.DelayedTask(function () {
-            Ext.getBody().unmask();
-        });
+            this.splashScreen.next().fadeOut({
+                duration: 1000,
+                remove: true
+            });
+
+            this._launchApplication();
+        },this);
 
         delatedTask.delay(2000);
+    },
+
+    _launchApplication:function(){
+        console.log('launch application');
     }
+
+
 
 
 
