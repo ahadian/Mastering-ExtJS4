@@ -10,4 +10,5 @@ Ext.application({
     extend: 'Packt.Application',
     
     autoCreateViewport: true
+    
 });
