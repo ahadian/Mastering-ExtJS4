@@ -7,6 +7,10 @@
 Ext.application({
     name: 'Packt',
     
+    init:function(){
+        splashScreen = Ext.getBody().mask('Loading application','splashscreen');
+    },
+
     launch:function(){
         console.log('launch');
     }
