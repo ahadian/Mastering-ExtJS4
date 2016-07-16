@@ -36,8 +36,4 @@ Ext.application({
         console.log('launch application');
     }
 
-
-
-
-
 });
