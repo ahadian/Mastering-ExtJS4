@@ -14,11 +14,11 @@ Ext.define('Packt.controller.Login',{
         });
     },
 
-    onButtonClickCancel:function(){
-        console.log('cancel clicked');
+    onButtonClickCancel:function(button, e,options){
+        button.up('form').getForm().reset();
     },
 
-    onButtonClickSubmit:function(){
+    onButtonClickSubmit:function(button, e,options){
         console.log('submit clicked');
     }
 });
