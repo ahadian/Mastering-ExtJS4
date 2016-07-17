@@ -7,11 +7,7 @@
 Ext.application({
     name: 'Packt',
 
-    requires: [
-        'Packt.view.Login'
-    ],
-
-    views: [
+    controllers: [
         'Login'
     ],
 
@@ -32,8 +28,8 @@ Ext.application({
             this.splashScreen.next().fadeOut({
                 duration: 1000,
                 remove: true,
-                listeners:{
-                    afteranimate:function(){
+                listeners: {
+                    afteranimate: function () {
                         Ext.widget('login');
                     }
                 }
