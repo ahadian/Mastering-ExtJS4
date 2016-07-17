@@ -7,6 +7,14 @@
 Ext.application({
     name: 'Packt',
 
+    requires: [
+        'Packt.view.Login'
+    ],
+
+    views: [
+        'Login'
+    ],
+
     init: function () {
         this.splashScreen = Ext.getBody().mask('Loading application', 'splashscreen');
         Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {
@@ -16,23 +24,27 @@ Ext.application({
 
     launch: function () {
         this._hideMaskAfterDelay();
+
     },
 
-   _hideMaskAfterDelay: function () {
+    _hideMaskAfterDelay: function () {
         var delatedTask = new Ext.util.DelayedTask(function () {
             this.splashScreen.next().fadeOut({
                 duration: 1000,
-                remove: true
+                remove: true,
+                listeners:{
+                    afteranimate:function(){
+                        Ext.widget('login');
+                    }
+                }
             });
-
-            this._launchApplication();
-        },this);
+        }, this);
 
         delatedTask.delay(2000);
     },
 
-    _launchApplication:function(){
-       Ext.create('Packt.view.Login');
+    _launchApplication: function () {
+        Ext.create('Packt.view.Login');
     }
 
 });
