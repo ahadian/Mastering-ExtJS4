@@ -1,6 +1,8 @@
 Ext.define('Packt.controller.Login', {
     extend: 'Ext.app.Controller',
-
+    requires: [
+        'Packt.util.MD5'
+    ],
     views: ['Login'],
 
     init: function (application) {
@@ -24,14 +26,14 @@ Ext.define('Packt.controller.Login', {
             user = formPanel.down('textfield[name=user]').getValue(),
             pass = formPanel.down('textfield[name=password]').getValue();
 
-            if(formPanel.getForm().isValid()){
-                Ext.Ajax.request({
-                    url:'php/login.php',
-                    params:{
-                        user:user,
-                        password:pass
-                    }
-                })
-            }
+        if (formPanel.getForm().isValid()) {
+            Ext.Ajax.request({
+                url: 'php/login.php',
+                params: {
+                    user: user,
+                    password: Packt.util.MD5.encode(pass)
+                }
+            })
+        }
     }
 });
