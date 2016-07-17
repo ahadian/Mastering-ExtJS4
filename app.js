@@ -6,7 +6,7 @@
 
 Ext.application({
     name: 'Packt',
-
+    enableQuickTips: true,
     controllers: [
         'Login'
     ],
@@ -19,8 +19,8 @@ Ext.application({
     },
 
     launch: function () {
+        Ext.tip.QuickTipManager.init();
         this._hideMaskAfterDelay();
-
     },
 
     _hideMaskAfterDelay: function () {

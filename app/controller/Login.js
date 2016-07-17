@@ -3,7 +3,17 @@ Ext.define('Packt.controller.Login', {
     requires: [
         'Packt.util.MD5'
     ],
-    views: ['Login'],
+    views: [
+        'Login',
+        'authentication.CapsLockTooltip'
+    ],
+
+    refs: [
+        {
+            ref: 'capsLockTooltip',
+            selector: 'capslocktooltip'
+        }
+    ],
 
     init: function (application) {
         this.control({
@@ -13,8 +23,11 @@ Ext.define('Packt.controller.Login', {
             'login form button#cancel': {
                 click: this.onButtonClickCancel
             },
-            'login form textfield':{
-                specialkey:this.onTextFieldSpecialKey
+            'login form textfield': {
+                specialkey: this.onTextFieldSpecialKey
+            },
+            'login form textfield[name=password]': {
+                keypress: this.onTextfieldKeyPress
             }
         });
     },
@@ -30,7 +43,7 @@ Ext.define('Packt.controller.Login', {
             pass = formPanel.down('textfield[name=password]').getValue();
 
         if (formPanel.getForm().isValid()) {
-            Ext.get(login.getEl()).mask('Authenticating.. Please wait..','Loading');
+            Ext.get(login.getEl()).mask('Authenticating.. Please wait..', 'Loading');
             Ext.Ajax.request({
                 url: 'php/login.php',
                 params: {
@@ -72,10 +85,29 @@ Ext.define('Packt.controller.Login', {
         }
     },
 
-    onTextFieldSpecialKey:function(field, e,options){
-          if(e.getKey() == e.ENTER){
-              var submitButton = field.up('form').down('button#submit');
-              submitButton.fireEvent('click',submitButton,e,options);
-          }
+    onTextFieldSpecialKey: function (field, e, options) {
+        if (e.getKey() == e.ENTER) {
+            var submitButton = field.up('form').down('button#submit');
+            submitButton.fireEvent('click', submitButton, e, options);
+        }
+    },
+
+    onTextfieldKeyPress: function (fild, e, options) {
+        var charCode = e.getCharCode();
+
+        if ((e.shiftKey && charCode >= 97 && charCode <= 122) ||
+            (!e.shiftKey && charCode >= 65 && charCode <= 90)) {
+
+            if (this.getCapsLockTooltip() === undefined) {
+                Ext.widget('capslocktooltip')
+            }
+            this.getCapsLockTooltip().show();
+
+        }
+        else {
+            if (this.getCapsLockTooltip() !== undefined) {
+                this.getCapsLockTooltip().hide();
+            }
+        }
     }
 });

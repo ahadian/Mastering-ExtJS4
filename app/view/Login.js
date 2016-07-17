@@ -33,29 +33,31 @@ Ext.define('Packt.view.Login', {
                     inputType: 'password',
                     name: 'password',
                     fieldLabel: 'password',
-                    maxLanth: 15
+                    maxLanth: 15,
+                    enableKeyEvents:true,
+                    id:'password' // id is required because of tooltip
                 }
             ],
-            dockedItems:[
+            dockedItems: [
                 {
-                    xtype:'toolbar',
-                    dock:'bottom',
-                    items:[
+                    xtype: 'toolbar',
+                    dock: 'bottom',
+                    items: [
                         {
-                            xtype:'tbfill'
+                            xtype: 'tbfill'
                         },
                         {
-                            xtype:'button',
-                            itemId:'cancel',
-                            text:'cancel',
-                            iconCls:'cancel'
+                            xtype: 'button',
+                            itemId: 'cancel',
+                            text: 'cancel',
+                            iconCls: 'cancel'
                         },
                         {
-                            xtype:'button',
-                            text:'Submit',
-                            itemId:'submit',
-                            iconCls:'key-go',
-                            formBind:true
+                            xtype: 'button',
+                            text: 'Submit',
+                            itemId: 'submit',
+                            iconCls: 'key-go',
+                            formBind: true
                         }
                     ]
                 }

@@ -23,3 +23,10 @@ margin-top: -30px;
 margin-bottom: 15px;
 height: 100px;
 }
+
+capslock{
+background:url('../icons/bullet_error.png') no-repeat center left;
+padding:2px;
+padding-left:20px;
+font-weight:700;
+}
