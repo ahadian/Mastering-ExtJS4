@@ -12,6 +12,9 @@ Ext.define('Packt.controller.Login', {
             },
             'login form button#cancel': {
                 click: this.onButtonClickCancel
+            },
+            'login form textfield':{
+                specialkey:this.onTextFieldSpecialKey
             }
         });
     },
@@ -67,5 +70,12 @@ Ext.define('Packt.controller.Login', {
 
             })
         }
+    },
+
+    onTextFieldSpecialKey:function(field, e,options){
+          if(e.getKey() == e.ENTER){
+              var submitButton = field.up('form').down('button#submit');
+              submitButton.fireEvent('click',submitButton,e,options);
+          }
     }
 });
